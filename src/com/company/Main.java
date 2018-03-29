@@ -1,5 +1,5 @@
 /*
-TODO: Disallow multi-word defiitions
+TODO: Disallow multi-word definitions (COMPLETED 3/28/2017)
  */
 
 package com.company;
@@ -104,7 +104,9 @@ public class Main {
         List<String> Synonyms = new ArrayList<>();
         List<WebElement> SynonymElements = driver.findElement(By.className("relevancy-list")).findElements(By.tagName("li"));
         for (int i = 0; i < SynonymElements.size(); i++){
-            Synonyms.add(SynonymElements.get(i).getText().replace("\nstar", ""));
+            if(SynonymElements.get(i).getText().replace("\nstar", "").split(" ").length == 1) {
+                Synonyms.add(SynonymElements.get(i).getText().replace("\nstar", ""));
+            }
         }
         return Synonyms;
     }
